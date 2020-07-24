@@ -1,11 +1,12 @@
 class KudosController < ApplicationController
   before_action :set_kudo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_recipient, only: [:new, :create]
 
   # GET /kudos
   # GET /kudos.json
   def index
-    @kudos = Kudo.all
+    @kudos = current_user.received_kudos
     @users = User.all
     @kudo = Kudo.new
   end
@@ -17,7 +18,7 @@ class KudosController < ApplicationController
 
   # GET /kudos/new
   def new
-    @kudo = Kudo.new
+    @kudo = current_user.sent_kudos.build
   end
 
   # GET /kudos/1/edit
@@ -27,11 +28,12 @@ class KudosController < ApplicationController
   # POST /kudos
   # POST /kudos.json
   def create
-    @kudo = Kudo.new(kudo_params)
+    @kudo = current_user.sent_kudos.build(kudo_params)
+    @kudo.recipient_id = @recipient.id
 
     respond_to do |format|
       if @kudo.save
-        format.html { redirect_to @kudo, notice: 'Kudo was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Kudo was successfully created.' }
         format.json { render :show, status: :created, location: @kudo }
       else
         format.html { render :new }
@@ -73,5 +75,9 @@ class KudosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def kudo_params
       params.require(:kudo).permit(:message, :sender_id, :recipient_id)
+    end
+
+    def set_recipient
+      @recipient = User.find(params[:user_id])
     end
 end

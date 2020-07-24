@@ -15,6 +15,7 @@
         <p>
         <strong><%= @user.name %></strong><br>
         <small><%= @user.email %></small><br><br>
+        <%= link_to "Give Kudos", new_user_kudo_path(:user_id => @user.id) %>
 		
     </p>
         </div>
