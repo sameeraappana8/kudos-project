@@ -5,15 +5,5 @@
   <%= @kudo.message %>
 </p>
 
-<p>
-  <strong>Sender:</strong>
-  <%= @kudo.sender_id %>
-</p>
-
-<p>
-  <strong>Recipient:</strong>
-  <%= @kudo.recipient_id %>
-</p>
-
 <%= link_to 'Edit', edit_kudo_path(@kudo) %> |
 <%= link_to 'Back', kudos_path %>

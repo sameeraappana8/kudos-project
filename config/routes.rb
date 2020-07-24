@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :kudos
-  root "kudos#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :kudos, only: [:index, :show, :destroy]
+  resources :users do
+    resources :messages, only: [:new, :create]
+  end
+  authenticated  :user do
+    root "kudos#index", as: "authenticated_root"
+  end
+  root 'welcome#index'
 end

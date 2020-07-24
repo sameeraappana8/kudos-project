@@ -1,0 +1,21 @@
+<h4> Who Do You Want To Give Kudos To? </h4>
+
+<% @users.each do | user | %>
+	<% if user.email != current_user.email %>
+	<%= link_to user do %>
+	<div>
+		<article class="media">
+	<div class="media-left">
+	<figure class="img-thumbnail">
+	<%= gravatar_image_tag(user.email, size: 64, alt: user.name) %>
+	</figure>
+</div>
+<div class="media-body">
+		<bold><%= user.name %> </bold><br />
+		<small><%= user.email %></small><br/>
+</div>
+</article>
+</div>
+<% end %>
+<% end %>
+<% end %>

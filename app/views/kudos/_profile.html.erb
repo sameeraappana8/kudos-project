@@ -1,0 +1,27 @@
+<h4> Your Profile</h4>
+        <article class="media">
+		<figure class="media-left">
+			<p class="img-thumbnail">
+            <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+			</p>
+        </figure>
+        <div class="media-body">
+        <p>
+        <strong><%= current_user.name %></strong><br />
+        <small><%= current_user.email %></small>
+    </p>
+        </div>
+    </article>  
+    <br>
+    <div class="container">
+    <div class="row">
+            <div>
+                <p class="heading">Kudos you received </p>
+                <p class="title is-6">
+                <% @kudos.each do |kudo| %>
+                    <%= kudo.message %>
+                 <% end %>
+                </p>
+            </div>
+    </div>
+</div>

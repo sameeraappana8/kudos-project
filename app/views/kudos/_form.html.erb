@@ -1,32 +1,24 @@
-<%= form_with(model: kudo, local: true) do |form| %>
-  <% if kudo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(kudo.errors.count, "error") %> prohibited this kudo from being saved:</h2>
-
-      <ul>
-        <% kudo.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_area :message %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sender_id %>
-    <%= form.number_field :sender_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recipient_id %>
-    <%= form.number_field :recipient_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= simple_form_for [@recipient, @message] do |f| %>
+  <% if @message.errors.any? %>
+  <div>
+    <h2>
+    <%= pluralize(@message.errors.count, "error") %>
+    prevented this message from saving.
+    </h2>
+    <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+  <div class="form-group">
+  <%= f.hidden_field :recipient_id, value: @recipient.id %>   
+    <%= f.input :message, input_html: { class: 'form-control' }, placeholder: "Say Something!", autofocus: true %>
+  </div>
+
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+

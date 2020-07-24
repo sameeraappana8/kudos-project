@@ -1,10 +1,13 @@
 class KudosController < ApplicationController
   before_action :set_kudo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /kudos
   # GET /kudos.json
   def index
     @kudos = Kudo.all
+    @users = User.all
+    @kudo = Kudo.new
   end
 
   # GET /kudos/1

@@ -1,0 +1,21 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+<h1>Profile</h1>
+</div>
+<div class="panel-body">
+        <article class="media">
+		<figure class="media-left">
+			<p class="img-thumbnail">
+            <%= gravatar_image_tag(@user.email, size: 64, alt: @user.name) %>
+			</p>
+		</figure>
+        <div class="media-body">
+        <p>
+        <strong><%= @user.name %></strong><br>
+        <small><%= @user.email %></small><br><br>
+		
+    </p>
+        </div>
+	</article>  
