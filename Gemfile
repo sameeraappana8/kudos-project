@@ -50,6 +50,9 @@ end
 
 group :test do
   gem 'capybara', '~> 3.33'
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.5'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'faker', '~> 2.13'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,24 +1,18 @@
-# README
+# Kudos Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+git clone github.com:sameeraappana8/kudos-project.git
+bundle install
+rails db:migrate
+rails server
+```
 
-Things you may want to cover:
+A user can give Kudos to the same user more than once in a week. I have written the functionality in this way as it is easier for testing. I can implement giving kudos to another user only once every week provided more time.
 
-* Ruby version
+## Running the Tests
 
-* System dependencies
+The Kudos Project has a test suite built with rspec, I could have written more tests for controllers, models if I had more time. To execute tests call the following in the project directory:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+bundle exec rspec
+```
