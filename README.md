@@ -11,8 +11,10 @@ A user can give Kudos to the same user more than once in a week. I have written 
 
 ## Running the Tests
 
-The Kudos Project has a test suite built with rspec, I could have written more tests for controllers, models if I had more time. To execute tests call the following in the project directory:
+The Kudos Project has a test suite built with rspec. To execute tests call the following in the project directory:
 
 ```bash
 bundle exec rspec
 ```
+
+If I had more time I could've implemented fixtures for generating random data for test database.
