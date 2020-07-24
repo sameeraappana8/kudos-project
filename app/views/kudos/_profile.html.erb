@@ -16,10 +16,12 @@
     <div class="container">
     <div class="row">
             <div>
-                <p class="heading">Kudos you received </p>
+                <p class="h3">Kudos you received </p>
                 <p class="title is-6">
                 <% @kudos.each do |kudo| %>
-                    <%= kudo.message %>
+                   <p><strong> <%= kudo.sender.name %>: </strong></p>
+                     <%= kudo.message %><br>
+                     <br>
                  <% end %>
                 </p>
             </div>

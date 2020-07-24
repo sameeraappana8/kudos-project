@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :received_kudos, class_name: "Kudo", foreign_key: :recipient_id
-  has_many :sent_kudos, class_name: "Kudo", foreign_key: :sender_id
-  has_many :kudos
+  has_many :sent_kudos, class_name: "Kudo", foreign_key: :sender_id do
+    def this_week
+      where(:created_at => (Time.zone.now.beginning_of_week..Time.zone.now))
+    end
+  end
 end

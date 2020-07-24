@@ -1,6 +1,21 @@
 <%= simple_form_for [@recipient, @kudo] do |f| %>
+  <% if @kudo.errors.any? %>
+  <div>
+    <h2>
+    <%= pluralize(@kudo.errors.count, "error") %>
+    prevented this message from saving.
+    </h2>
+    <ul>
+      <% @kudo.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <div class="form-group">
-  <%= f.hidden_field :recipient_id, value: @recipient.id %>
+  <%= f.hidden_field :recipient_id, value: @recipient.id %> 
     <%= f.input :message, input_html: { class: 'form-control' }, placeholder: "Say Something!", autofocus: true, object: f.object %>
   </div>
 

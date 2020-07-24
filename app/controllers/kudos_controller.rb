@@ -19,6 +19,8 @@ class KudosController < ApplicationController
   # GET /kudos/new
   def new
     @kudo = current_user.sent_kudos.build
+    @kudo.sender = current_user
+    @kudo.recipient = @recipient
   end
 
   # GET /kudos/1/edit
@@ -29,7 +31,8 @@ class KudosController < ApplicationController
   # POST /kudos.json
   def create
     @kudo = current_user.sent_kudos.build(kudo_params)
-    @kudo.recipient_id = @recipient.id
+    @kudo.sender = current_user
+    @kudo.recipient = @recipient
 
     respond_to do |format|
       if @kudo.save
